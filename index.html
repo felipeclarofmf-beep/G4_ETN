@@ -447,6 +447,7 @@
       var loginPassword = document.getElementById("login-password");
       var siteHeader = document.getElementsByTagName("header")[0];
       var siteMain = document.getElementsByTagName("main")[0];
+      var sessionAccessKey = "portal-access-granted";
       var demoUsers = [
         ["Felipe Barbosa", "Felipe@2027"],
         ["ETN_G4", "ETNG42027"],
@@ -460,6 +461,30 @@
         }
         loginError.removeAttribute("hidden");
         loginError.style.display = "block";
+      }
+
+      function showPortal() {
+        loginError.setAttribute("hidden", "hidden");
+        loginError.style.display = "none";
+        loginScreen.setAttribute("hidden", "hidden");
+        loginScreen.style.display = "none";
+        siteHeader.removeAttribute("hidden");
+        siteHeader.style.display = "";
+        siteMain.removeAttribute("hidden");
+        siteMain.style.display = "";
+        siteMain.focus();
+      }
+
+      function restoreSessionAccess() {
+        try {
+          if (window.sessionStorage.getItem(sessionAccessKey) === "true") {
+            showPortal();
+          }
+        } catch (error) {
+          setLoginError(
+            "O navegador bloqueou o armazenamento desta sessão. Permita o armazenamento e recarregue a página."
+          );
+        }
       }
 
       function handleLogin(event) {
@@ -496,16 +521,17 @@
           return;
         }
 
-        loginError.setAttribute("hidden", "hidden");
-        loginError.style.display = "none";
+        try {
+          window.sessionStorage.setItem(sessionAccessKey, "true");
+        } catch (error) {
+          setLoginError(
+            "Não foi possível manter seu acesso nesta sessão. Permita o armazenamento no navegador e tente novamente."
+          );
+          return;
+        }
+
         loginForm.reset();
-        loginScreen.setAttribute("hidden", "hidden");
-        loginScreen.style.display = "none";
-        siteHeader.removeAttribute("hidden");
-        siteHeader.style.display = "";
-        siteMain.removeAttribute("hidden");
-        siteMain.style.display = "";
-        siteMain.focus();
+        showPortal();
       }
 
       if (loginForm.addEventListener) {
@@ -513,6 +539,8 @@
       } else if (loginForm.attachEvent) {
         loginForm.attachEvent("onsubmit", handleLogin);
       }
+
+      restoreSessionAccess();
     </script>
     <script src="carousel.js" defer></script>
   </body>
