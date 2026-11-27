@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 100" role="img" aria-label="Reconhecimento">
+  <rect width="180" height="100" rx="12" fill="#fff5f5"/>
+  <circle cx="90" cy="44" r="28" fill="#e30613"/>
+  <circle cx="90" cy="44" r="19" fill="#fff"/>
+  <path d="M90 30l4 9 10 1-8 7 2 10-8-5-8 5 2-10-8-7 10-1z" fill="#e30613"/>
+  <path d="M72 66l-8 22 26-8 26 8-8-22" fill="#333"/>
+  <path d="M80 71l10 9 10-9" fill="#e30613"/>
+</svg>

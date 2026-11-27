@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="180" viewBox="0 0 480 180" fill="none">
+  <rect width="480" height="180" rx="18" fill="#F4F7FB"/>
+  <rect x="194" y="23" width="243" height="111" rx="8" fill="#FFFFFF" stroke="#D7DEE9" stroke-width="4"/>
+  <rect x="207" y="35" width="217" height="82" rx="4" fill="#E8F4F1"/>
+  <text x="315" y="91" fill="#E30613" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" letter-spacing="2" text-anchor="middle">ETN</text>
+  <path d="M296 134V146M337 134V146M273 148H360" stroke="#64748B" stroke-width="5" stroke-linecap="round"/>
+  <path d="M100 149C102 116 113 94 134 89C142 87 154 87 162 89C182 94 193 116 195 149H100Z" fill="#E30613"/>
+  <path d="M133 77V96C133 105 139 111 148 111C157 111 163 105 163 96V77H133Z" fill="#D99A75"/>
+  <path d="M130 58C130 39 139 28 149 28C164 28 171 41 168 59L165 75C162 87 156 94 148 94C140 94 133 86 131 75L130 58Z" fill="#E7B18F"/>
+  <path d="M128 60C125 39 136 23 151 23C168 23 175 39 171 59L166 49C155 52 146 48 137 44L132 62L128 60Z" fill="#3C332F"/>
+  <path d="M135 61C139 58 143 58 146 61M154 61C158 58 162 59 165 62" stroke="#513B35" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="141" cy="66" r="2" fill="#273142"/>
+  <circle cx="159" cy="66" r="2" fill="#273142"/>
+  <path d="M146 77C149 79 153 79 156 77" stroke="#9D5E50" stroke-width="2" stroke-linecap="round"/>
+  <path d="M173 102L211 77L217 84L186 118" fill="#E30613" stroke="#B8050F" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M211 77L224 69" stroke="#D99A75" stroke-width="7" stroke-linecap="round"/>
+  <path d="M121 105L97 126L90 119" stroke="#B8050F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M90 119L84 111" stroke="#D99A75" stroke-width="8" stroke-linecap="round"/>
+  <path d="M121 149V176M173 149V176" stroke="#334155" stroke-width="13"/>
+  <path d="M110 176H131M162 176H183" stroke="#1E293B" stroke-width="7" stroke-linecap="round"/>
+  <path d="M41 154H69M72 154H91" stroke="#CBD5E1" stroke-width="5" stroke-linecap="round"/>
+</svg>
