@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      [hidden] {
+        display: none !important;
+      }
+    </style>
   </head>
   <body>
     <section
@@ -16,7 +21,7 @@
         <span class="login-eyebrow">Portal de conteúdos</span>
         <h1 id="login-title">Acesse o portal</h1>
         <p class="login-intro">Preencha os campos para continuar.</p>
-        <form class="login-form" id="login-form">
+        <form class="login-form" id="login-form" novalidate>
           <label for="login-username">Usuário</label>
           <input
             id="login-username"
@@ -35,7 +40,13 @@
           />
           <button type="submit">Entrar</button>
         </form>
-        <p class="login-error" id="login-error" role="alert" hidden></p>
+        <p
+          class="login-error"
+          id="login-error"
+          role="alert"
+          hidden
+          style="display: none"
+        ></p>
         <p class="login-notice" id="login-notice">
           Acesso demonstrativo, sem proteção real. Os usuários e senhas ficam
           visíveis no código e podem ser contornados. Use somente credenciais
@@ -43,7 +54,7 @@
         </p>
       </div>
     </section>
-    <header hidden>
+    <header hidden style="display: none">
       <a
         class="header-promo-link"
         href="https://www.claro.com.br"
@@ -240,7 +251,7 @@
       </div>
     </header>
 
-    <main hidden tabindex="-1">
+    <main hidden tabindex="-1" style="display: none">
       <section class="aulas" aria-labelledby="aulas-title">
         <div class="aulas-header">
           <h1 id="aulas-title">Aulas</h1>
@@ -429,37 +440,79 @@
       </section>
     </main>
     <script>
-      const loginForm = document.getElementById("login-form");
-      const loginScreen = document.getElementById("login-screen");
-      const loginError = document.getElementById("login-error");
-      const siteHeader = document.querySelector("body > header");
-      const siteMain = document.querySelector("body > main");
-      const demoUsers = new Map([
+      var loginForm = document.getElementById("login-form");
+      var loginScreen = document.getElementById("login-screen");
+      var loginError = document.getElementById("login-error");
+      var loginUsername = document.getElementById("login-username");
+      var loginPassword = document.getElementById("login-password");
+      var siteHeader = document.getElementsByTagName("header")[0];
+      var siteMain = document.getElementsByTagName("main")[0];
+      var demoUsers = [
         ["Felipe Barbosa", "Felipe@2027"],
         ["ETN_G4", "ETNG42027"],
-      ]);
+      ];
 
-      loginForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        if (!loginForm.reportValidity()) return;
+      function setLoginError(message) {
+        if (typeof loginError.textContent !== "undefined") {
+          loginError.textContent = message;
+        } else {
+          loginError.innerText = message;
+        }
+        loginError.removeAttribute("hidden");
+        loginError.style.display = "block";
+      }
 
-        const username = loginForm.elements.namedItem("username").value.trim();
-        const password = loginForm.elements.namedItem("password").value;
-        if (demoUsers.get(username) !== password) {
-          loginError.textContent = "Usuário ou senha incorretos.";
-          loginError.hidden = false;
-          loginForm.elements.namedItem("password").value = "";
-          loginForm.elements.namedItem("password").focus();
+      function handleLogin(event) {
+        event = event || window.event;
+        if (event.preventDefault) {
+          event.preventDefault();
+        } else {
+          event.returnValue = false;
+        }
+
+        var username = loginUsername.value.replace(/^\s+|\s+$/g, "");
+        var password = loginPassword.value;
+        if (!username || !password) {
+          setLoginError("Preencha o usuário e a senha.");
           return;
         }
 
-        loginError.hidden = true;
+        var validUser = false;
+        for (var i = 0; i < demoUsers.length; i++) {
+          if (
+            demoUsers[i] &&
+            demoUsers[i][0] === username &&
+            demoUsers[i][1] === password
+          ) {
+            validUser = true;
+            break;
+          }
+        }
+
+        if (!validUser) {
+          setLoginError("Usuário ou senha incorretos.");
+          loginPassword.value = "";
+          loginPassword.focus();
+          return;
+        }
+
+        loginError.setAttribute("hidden", "hidden");
+        loginError.style.display = "none";
         loginForm.reset();
-        loginScreen.hidden = true;
-        siteHeader.hidden = false;
-        siteMain.hidden = false;
+        loginScreen.setAttribute("hidden", "hidden");
+        loginScreen.style.display = "none";
+        siteHeader.removeAttribute("hidden");
+        siteHeader.style.display = "";
+        siteMain.removeAttribute("hidden");
+        siteMain.style.display = "";
         siteMain.focus();
-      });
+      }
+
+      if (loginForm.addEventListener) {
+        loginForm.addEventListener("submit", handleLogin, false);
+      } else if (loginForm.attachEvent) {
+        loginForm.attachEvent("onsubmit", handleLogin);
+      }
     </script>
     <script src="carousel.js" defer></script>
   </body>
