@@ -7,7 +7,43 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
+    <section
+      class="login-screen"
+      id="login-screen"
+      aria-labelledby="login-title"
+    >
+      <div class="login-card">
+        <span class="login-eyebrow">Portal de conteúdos</span>
+        <h1 id="login-title">Acesse o portal</h1>
+        <p class="login-intro">Preencha os campos para continuar.</p>
+        <form class="login-form" id="login-form">
+          <label for="login-username">Usuário</label>
+          <input
+            id="login-username"
+            name="username"
+            type="text"
+            autocomplete="off"
+            required
+          />
+          <label for="login-password">Senha</label>
+          <input
+            id="login-password"
+            name="password"
+            type="password"
+            autocomplete="new-password"
+            required
+          />
+          <button type="submit">Entrar</button>
+        </form>
+        <p class="login-error" id="login-error" role="alert" hidden></p>
+        <p class="login-notice" id="login-notice">
+          Acesso demonstrativo, sem proteção real. Os usuários e senhas ficam
+          visíveis no código e podem ser contornados. Use somente credenciais
+          fictícias; nunca informe senhas reais.
+        </p>
+      </div>
+    </section>
+    <header hidden>
       <a
         class="header-promo-link"
         href="https://www.claro.com.br"
@@ -204,7 +240,7 @@
       </div>
     </header>
 
-    <main>
+    <main hidden tabindex="-1">
       <section class="aulas" aria-labelledby="aulas-title">
         <div class="aulas-header">
           <h1 id="aulas-title">Aulas</h1>
@@ -392,6 +428,39 @@
         </div>
       </section>
     </main>
+    <script>
+      const loginForm = document.getElementById("login-form");
+      const loginScreen = document.getElementById("login-screen");
+      const loginError = document.getElementById("login-error");
+      const siteHeader = document.querySelector("body > header");
+      const siteMain = document.querySelector("body > main");
+      const demoUsers = new Map([
+        ["Felipe Barbosa", "Felipe@2027"],
+        ["ETN_G4", "ETNG42027"],
+      ]);
+
+      loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!loginForm.reportValidity()) return;
+
+        const username = loginForm.elements.namedItem("username").value.trim();
+        const password = loginForm.elements.namedItem("password").value;
+        if (demoUsers.get(username) !== password) {
+          loginError.textContent = "Usuário ou senha incorretos.";
+          loginError.hidden = false;
+          loginForm.elements.namedItem("password").value = "";
+          loginForm.elements.namedItem("password").focus();
+          return;
+        }
+
+        loginError.hidden = true;
+        loginForm.reset();
+        loginScreen.hidden = true;
+        siteHeader.hidden = false;
+        siteMain.hidden = false;
+        siteMain.focus();
+      });
+    </script>
     <script src="carousel.js" defer></script>
   </body>
 </html>
