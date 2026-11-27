@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 100" role="img" aria-label="Rede externa">
-  <rect width="180" height="100" rx="12" fill="#fff5f5"/>
-  <path d="M42 82V38h96v44" fill="none" stroke="#333" stroke-width="6"/>
-  <path d="M42 38l48-24 48 24" fill="none" stroke="#e30613" stroke-width="6" stroke-linejoin="round"/>
-  <rect x="82" y="52" width="16" height="30" rx="3" fill="#e30613"/>
-  <circle cx="70" cy="48" r="7" fill="#fff" stroke="#333" stroke-width="4"/>
-  <circle cx="110" cy="48" r="7" fill="#fff" stroke="#333" stroke-width="4"/>
-  <path d="M24 82h132" stroke="#333" stroke-width="4" stroke-linecap="round"/>
-</svg>
