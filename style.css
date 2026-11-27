@@ -2,11 +2,119 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #252525;
   background-color: #f5f5f5;
+}
+
+.login-screen {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top left, rgb(227 6 19 / 10%), transparent 38%),
+    #f5f5f5;
+}
+
+.login-card {
+  width: min(100%, 420px);
+  padding: clamp(24px, 6vw, 40px);
+  border: 1px solid #e8e8e8;
+  border-top: 5px solid #e30613;
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 10%);
+}
+
+.login-eyebrow {
+  color: #e30613;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.login-card h1 {
+  margin: 10px 0 8px;
+  color: #252525;
+  font-size: clamp(26px, 6vw, 32px);
+}
+
+.login-intro {
+  margin: 0 0 24px;
+  color: #555454;
+  line-height: 1.5;
+}
+
+.login-form {
+  display: grid;
+  gap: 10px;
+}
+
+.login-form label {
+  color: #333;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.login-form input {
+  width: 100%;
+  min-height: 48px;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border: 1px solid #c9c9c9;
+  border-radius: 6px;
+  color: #252525;
+  font: inherit;
+}
+
+.login-form input:focus-visible {
+  border-color: #e30613;
+  outline: 3px solid rgb(227 6 19 / 20%);
+}
+
+.login-form button {
+  min-height: 48px;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 6px;
+  background-color: #e30613;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-form button:hover,
+.login-form button:focus-visible {
+  background-color: #b8050f;
+}
+
+.login-form button:focus-visible {
+  outline: 3px solid rgb(227 6 19 / 35%);
+  outline-offset: 3px;
+}
+
+.login-error {
+  margin: 12px 0 0;
+  color: #b8050f;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.login-notice {
+  margin: 20px 0 0;
+  color: #666;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 header {
@@ -1084,4 +1192,203 @@ main {
   .reconhecimento-conteudo {
     padding: 24px;
   }
+}
+
+@media (max-width: 1100px) {
+  header {
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    padding: 14px 3%;
+  }
+
+  nav {
+    min-width: 0;
+  }
+
+  nav > ul {
+    flex-wrap: wrap;
+    gap: 0 clamp(10px, 1.4vw, 20px);
+  }
+
+  .header-actions {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .dropdown details > ul {
+    z-index: 2;
+    max-width: min(90vw, 320px);
+  }
+
+  .dropdown details > ul a {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .aula-card,
+  .relatorio-card {
+    flex-basis: calc((100% - 20px) / 2);
+  }
+
+  .reconhecimento-card {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  }
+
+  .reconhecimento-imagem {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 900px) {
+  main {
+    padding-right: 4%;
+    padding-left: 4%;
+  }
+
+  .destaques-grid,
+  .videos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .capacitacao-gpon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .safra-card {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 16px;
+    padding: 22px;
+  }
+
+  .safra-card-icon {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 640px) {
+  header {
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px 5%;
+  }
+
+  main {
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+  nav {
+    width: 100%;
+    flex: none;
+  }
+
+  nav > ul {
+    align-items: flex-start;
+    gap: 0 16px;
+  }
+
+  nav summary {
+    min-height: 44px;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .workgroup-selector {
+    align-self: flex-start;
+  }
+
+  .dropdown:last-child details > ul {
+    right: 0;
+    left: auto;
+  }
+
+  .aulas-header,
+  .relatorios-header,
+  .destaques-header,
+  .videos-header,
+  .capacitacao-gpon-header {
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  .capacitacao-gpon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aula-card,
+  .relatorio-card {
+    flex-basis: 82%;
+  }
+
+  .destaques-grid,
+  .videos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reconhecimento-card {
+    grid-template-columns: 1fr;
+  }
+
+  .reconhecimento-imagem {
+    height: auto;
+    min-height: 0;
+  }
+
+  .safra-hero {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .safra-hero-mark {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-actions {
+    justify-content: flex-start;
+  }
+
+  .header-action {
+    padding: 0 7px;
+    font-size: 10px;
+  }
+
+  .carousel-layout {
+    grid-template-columns: 32px minmax(0, 1fr) 32px;
+    gap: 6px;
+  }
+
+  .carousel-button {
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+  }
+
+  .capacitacao-gpon-aulas {
+    padding: 16px;
+  }
+
+  .safra-card {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .safra-card p {
+    min-height: 0;
+  }
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
 }
