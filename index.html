@@ -18,7 +18,7 @@
       aria-labelledby="login-title"
     >
       <div class="login-card">
-        <span class="login-eyebrow">Portal de conteúdos</span>
+        <span class="login-eyebrow">Portal ETN G4</span>
         <h1 id="login-title">Acesse o portal</h1>
         <p class="login-intro">Preencha os campos para continuar.</p>
         <form class="login-form" id="login-form" novalidate>
@@ -47,11 +47,7 @@
           hidden
           style="display: none"
         ></p>
-        <p class="login-notice" id="login-notice">
-          Acesso demonstrativo, sem proteção real. Os usuários e senhas ficam
-          visíveis no código e podem ser contornados. Use somente credenciais
-          fictícias; nunca informe senhas reais.
-        </p>
+        <p class="login-notice" id="login-notice"></p>
       </div>
     </section>
     <header hidden style="display: none">
@@ -482,7 +478,7 @@
           }
         } catch (error) {
           setLoginError(
-            "O navegador bloqueou o armazenamento desta sessão. Permita o armazenamento e recarregue a página."
+            "O navegador bloqueou o armazenamento desta sessão. Permita o armazenamento e recarregue a página.",
           );
         }
       }
@@ -525,7 +521,7 @@
           window.sessionStorage.setItem(sessionAccessKey, "true");
         } catch (error) {
           setLoginError(
-            "Não foi possível manter seu acesso nesta sessão. Permita o armazenamento no navegador e tente novamente."
+            "Não foi possível manter seu acesso nesta sessão. Permita o armazenamento no navegador e tente novamente.",
           );
           return;
         }
